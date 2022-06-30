@@ -1,10 +1,9 @@
 package com.alexandrazbant.dependencyinjection.services;
 
-
-public class PrimaryGreetingService implements GreetingService{
+public class I18nSpanishGreetingService implements GreetingService{
 
     @Override
     public String sayGreeting() {
-        return "Hello - From the PRIMARY BEAN";
+        return "Ola mundo - ES";
     }
 }
