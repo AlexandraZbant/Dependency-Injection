@@ -1,8 +1,17 @@
 package com.alexandrazbant.dependencyinjection.services;
 
+import com.alexandrazbant.dependencyinjection.repositories.EnglishGreetingRepository;
+
 public class I18nEnglishGreetingService implements GreetingService{
+
+    private final EnglishGreetingRepository englishGreetingRepository;
+
+    public I18nEnglishGreetingService(EnglishGreetingRepository englishGreetingRepository) {
+        this.englishGreetingRepository = englishGreetingRepository;
+    }
+
     @Override
     public String sayGreeting() {
-        return "Hello Everybody - EN";
+        return englishGreetingRepository.getGreeting();
     }
 }
