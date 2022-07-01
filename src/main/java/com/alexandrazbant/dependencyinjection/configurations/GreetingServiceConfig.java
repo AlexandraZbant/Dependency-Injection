@@ -3,14 +3,27 @@ package com.alexandrazbant.dependencyinjection.configurations;
 
 import alexandra.dependencyinjection.pets.services.PetService;
 import alexandra.dependencyinjection.pets.services.PetServiceFactory;
+import com.alexandrazbant.dependencyinjection.datasource.FakeDataSource;
 import com.alexandrazbant.dependencyinjection.repositories.*;
 import com.alexandrazbant.dependencyinjection.services.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:di_config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${alexandrazbant.username}") String username,
+                                  @Value("${alexandrazbant.password}") String password,
+                                  @Value("${alexandrazbant.jdbcURL}") String jdbcURL){
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUsername(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcURL(jdbcURL);
+        return fakeDataSource;
+    }
 
     @Bean
     PetServiceFactory petServiceFactory(){
