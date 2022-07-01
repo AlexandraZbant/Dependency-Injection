@@ -7,6 +7,7 @@ import com.alexandrazbant.dependencyinjection.repositories.*;
 import com.alexandrazbant.dependencyinjection.services.*;
 import org.springframework.context.annotation.*;
 
+@ImportResource("classpath:di_config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
@@ -56,7 +57,7 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
+//    @Bean
     ConstructorGreetingService constructorGreetingService(){
         return new ConstructorGreetingService();
     }
