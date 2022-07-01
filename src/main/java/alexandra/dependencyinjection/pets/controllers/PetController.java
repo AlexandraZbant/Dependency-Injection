@@ -1,5 +1,6 @@
-package alexandra.dependencyinjection.pets;
+package alexandra.dependencyinjection.pets.controllers;
 
+import alexandra.dependencyinjection.pets.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

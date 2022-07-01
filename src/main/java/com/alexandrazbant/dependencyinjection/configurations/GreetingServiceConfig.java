@@ -1,17 +1,32 @@
 package com.alexandrazbant.dependencyinjection.configurations;
 
-import com.alexandrazbant.dependencyinjection.repositories.EnglishGreetingRepository;
-import com.alexandrazbant.dependencyinjection.repositories.EnglishGreetingRepositoryImpl;
-import com.alexandrazbant.dependencyinjection.repositories.SpanishGreetingRepository;
-import com.alexandrazbant.dependencyinjection.repositories.SpanishGreetingRepositoryImpl;
+
+import alexandra.dependencyinjection.pets.services.PetService;
+import alexandra.dependencyinjection.pets.services.PetServiceFactory;
+import com.alexandrazbant.dependencyinjection.repositories.*;
 import com.alexandrazbant.dependencyinjection.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
 @Configuration
 public class GreetingServiceConfig {
+
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+       return new PetServiceFactory();
+    }
+
+    @Profile({"dog", "default"})
+    @Bean
+    PetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Profile("cat")
+    @Bean
+    PetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
+    }
 
     @Bean
     SpanishGreetingRepository spanishGreetingRepository(){

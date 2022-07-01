@@ -1,4 +1,4 @@
-package alexandra.dependencyinjection.pets;
+package alexandra.dependencyinjection.pets.services;
 
 public interface PetService {
 
