@@ -2,6 +2,7 @@ package com.alexandrazbant.dependencyinjection;
 
 import alexandra.dependencyinjection.pets.controllers.PetController;
 import com.alexandrazbant.dependencyinjection.configurations.AlexaConfiguration;
+import com.alexandrazbant.dependencyinjection.configurations.AlexaConstructorConfiguration;
 import com.alexandrazbant.dependencyinjection.controllers.*;
 import com.alexandrazbant.dependencyinjection.datasource.FakeDataSource;
 import com.alexandrazbant.dependencyinjection.services.PrototypeBean;
@@ -66,5 +67,11 @@ public class DependencyInjectionApplication {
         System.out.println(alexaConfiguration.getUsername());
         System.out.println(alexaConfiguration.getPassword());
         System.out.println(alexaConfiguration.getJdbcURL());
+
+        System.out.println("---------------Constructor Binding");
+        AlexaConstructorConfiguration alexaConstructorConfiguration = ctx.getBean(AlexaConstructorConfiguration.class);
+        System.out.println(alexaConstructorConfiguration.getUsername());
+        System.out.println(alexaConstructorConfiguration.getPassword());
+        System.out.println(alexaConstructorConfiguration.getJdbcURL());
     }
 }

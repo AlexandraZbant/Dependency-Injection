@@ -7,19 +7,20 @@ import com.alexandrazbant.dependencyinjection.datasource.FakeDataSource;
 import com.alexandrazbant.dependencyinjection.repositories.*;
 import com.alexandrazbant.dependencyinjection.services.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
-
+@EnableConfigurationProperties(AlexaConstructorConfiguration.class)
 @ImportResource("classpath:di_config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
     @Bean
-    FakeDataSource fakeDataSource(AlexaConfiguration alexaConfiguration){
+    FakeDataSource fakeDataSource(AlexaConstructorConfiguration alexaConstructorConfiguration){
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(alexaConfiguration.getUsername());
-        fakeDataSource.setPassword(alexaConfiguration.getPassword());
-        fakeDataSource.setJdbcURL(alexaConfiguration.getJdbcURL());
+        fakeDataSource.setUsername(alexaConstructorConfiguration.getUsername());
+        fakeDataSource.setPassword(alexaConstructorConfiguration.getPassword());
+        fakeDataSource.setJdbcURL(alexaConstructorConfiguration.getJdbcURL());
         return fakeDataSource;
     }
 
